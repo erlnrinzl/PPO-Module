@@ -1,0 +1,474 @@
+export type JenisKasus = 'BUP' | 'Meninggal' | 'Uzur' | 'Tewas' | 'PengunduranDiri' | 'Hilang' | 'Ditemukan' | 'MPP' | 'Normal';
+export type StatusProses = 'Belum Diproses' | 'Dalam Proses' | 'Menunggu Verifikasi' | 'Menunggu Persetujuan' | 'Selesai' | 'Ditolak' | 'Perlu Tindak Lanjut';
+
+export interface Pegawai {
+  id: string;
+  nip: string;
+  nama: string;
+  jabatan: string;
+  unitKerja: string;
+  satker: string;
+  eselon: string;
+  pangkatGolongan: string;
+  tmtGolongan: string;
+  tanggalLahir: string;
+  tanggalBUP: string;
+  sisaBulan: number;
+  jenisKelamin: 'L' | 'P';
+  statusKepegawaian: string;
+  jenisKasus: JenisKasus;
+  statusProses: StatusProses;
+  tahapanSaat: number;
+  totalTahapan: number;
+  nomorKasus: string;
+  tanggalKasus: string;
+  keterangan?: string;
+  jenisPengunduranDiri?: 'Dengan Hak Pensiun' | 'Tanpa Hak Pensiun';
+}
+
+export const MOCK_PEGAWAI: Pegawai[] = [
+  {
+    id: '1', nip: '197207151995031003', nama: 'Gunawan Wibowo', jabatan: 'Analis Anggaran',
+    unitKerja: 'Direktorat Anggaran I', satker: 'DJA', eselon: 'IV',
+    pangkatGolongan: 'Pembina / IV-a', tmtGolongan: '01-04-2019',
+    tanggalLahir: '15-07-1972', tanggalBUP: '31-07-2030', sisaBulan: 1,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'BUP', statusProses: 'Perlu Tindak Lanjut', tahapanSaat: 1, totalTahapan: 5,
+    nomorKasus: 'PPO/BUP/2024/001', tanggalKasus: '01-06-2024',
+    keterangan: 'BUP sangat kritis < 1 bulan, segera proses berkas',
+  },
+  {
+    id: '2', nip: '196801202001011001', nama: 'Ahmad Subarjo', jabatan: 'Kepala Subbagian TU',
+    unitKerja: 'Subbagian Tata Usaha', satker: 'KPPN Jakarta I', eselon: 'IV',
+    pangkatGolongan: 'Pembina Tk.I / IV-b', tmtGolongan: '01-10-2021',
+    tanggalLahir: '20-01-1968', tanggalBUP: '31-01-2026', sisaBulan: 3,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'BUP', statusProses: 'Dalam Proses', tahapanSaat: 2, totalTahapan: 5,
+    nomorKasus: 'PPO/BUP/2024/002', tanggalKasus: '15-03-2024',
+    keterangan: 'Clearance BMN belum selesai',
+  },
+  {
+    id: '3', nip: '197501152003011001', nama: 'Budi Santoso', jabatan: 'Kepala Seksi Perbendaharaan',
+    unitKerja: 'Seksi Perbendaharaan', satker: 'KPPN Bekasi', eselon: 'IV',
+    pangkatGolongan: 'Penata Tk.I / III-d', tmtGolongan: '01-04-2020',
+    tanggalLahir: '15-01-1975', tanggalBUP: '31-01-2031', sisaBulan: 6,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'BUP', statusProses: 'Dalam Proses', tahapanSaat: 2, totalTahapan: 5,
+    nomorKasus: 'PPO/BUP/2024/003', tanggalKasus: '01-05-2024',
+  },
+  {
+    id: '4', nip: '196505081991032001', nama: 'Dewi Rahayu', jabatan: 'Analis Kebijakan Muda',
+    unitKerja: 'Direktorat Sistem Perbendaharaan', satker: 'DJPb', eselon: 'IV',
+    pangkatGolongan: 'Penata / III-c', tmtGolongan: '01-04-2016',
+    tanggalLahir: '08-05-1965', tanggalBUP: '31-05-2023', sisaBulan: 0,
+    jenisKelamin: 'P', statusKepegawaian: 'PNS',
+    jenisKasus: 'Meninggal', statusProses: 'Dalam Proses', tahapanSaat: 3, totalTahapan: 5,
+    nomorKasus: 'PPO/MNG/2024/001', tanggalKasus: '12-05-2024',
+    keterangan: 'Meninggal dunia pada 12 Mei 2024 di RSUP Fatmawati',
+  },
+  {
+    id: '5', nip: '198203142005011002', nama: 'Eko Prasetyo', jabatan: 'Pelaksana',
+    unitKerja: 'Seksi Penagihan', satker: 'KPP Pratama Cibinong', eselon: '-',
+    pangkatGolongan: 'Pengatur / II-c', tmtGolongan: '01-04-2019',
+    tanggalLahir: '14-03-1982', tanggalBUP: '31-03-2038', sisaBulan: 168,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'Tewas', statusProses: 'Dalam Proses', tahapanSaat: 2, totalTahapan: 6,
+    nomorKasus: 'PPO/TWS/2024/001', tanggalKasus: '03-04-2024',
+    keterangan: 'Tewas dalam perjalanan dinas, kecelakaan lalu lintas',
+  },
+  {
+    id: '6', nip: '197909212004012001', nama: 'Fatimah Zahra', jabatan: 'Analis Keuangan',
+    unitKerja: 'Subbidang Analisis Keuangan', satker: 'DJKN', eselon: 'IV',
+    pangkatGolongan: 'Penata Tk.I / III-d', tmtGolongan: '01-04-2022',
+    tanggalLahir: '21-09-1979', tanggalBUP: '30-09-2031', sisaBulan: 4,
+    jenisKelamin: 'P', statusKepegawaian: 'PNS',
+    jenisKasus: 'BUP', statusProses: 'Perlu Tindak Lanjut', tahapanSaat: 1, totalTahapan: 5,
+    nomorKasus: 'PPO/BUP/2024/004', tanggalKasus: '05-05-2024',
+  },
+  {
+    id: '7', nip: '196312101989031002', nama: 'Hartono Susilo', jabatan: 'Kepala Bidang Kepatuhan',
+    unitKerja: 'Bidang Kepatuhan Internal', satker: 'Kanwil DJP Jakarta Pusat', eselon: 'III',
+    pangkatGolongan: 'Pembina Utama Muda / IV-c', tmtGolongan: '01-10-2020',
+    tanggalLahir: '10-12-1963', tanggalBUP: '31-12-2021', sisaBulan: 8,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'Uzur', statusProses: 'Menunggu Verifikasi', tahapanSaat: 3, totalTahapan: 5,
+    nomorKasus: 'PPO/UZR/2024/001', tanggalKasus: '10-01-2024',
+    keterangan: 'Sakit berkepanjangan, tidak mampu bekerja lebih dari 18 bulan',
+  },
+  {
+    id: '8', nip: '198905172014031001', nama: 'Hendra Kusuma', jabatan: 'Analis Sistem Informasi',
+    unitKerja: 'Direktorat TIK', satker: 'Sekretariat Jenderal', eselon: 'IV',
+    pangkatGolongan: 'Penata Muda Tk.I / III-b', tmtGolongan: '01-04-2021',
+    tanggalLahir: '17-05-1989', tanggalBUP: '31-05-2045', sisaBulan: 255,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'PengunduranDiri', statusProses: 'Menunggu Persetujuan', tahapanSaat: 2, totalTahapan: 6,
+    nomorKasus: 'PPO/PGD/2024/001', tanggalKasus: '15-05-2024',
+    keterangan: 'Mengundurkan diri untuk alasan keluarga',
+    jenisPengunduranDiri: 'Dengan Hak Pensiun',
+  },
+  {
+    id: '9', nip: '197012051995122001', nama: 'Indah Pertiwi', jabatan: 'Kepala Subbagian Kepegawaian',
+    unitKerja: 'Bagian Kepegawaian', satker: 'Biro SDM Setjen', eselon: 'IV',
+    pangkatGolongan: 'Pembina / IV-a', tmtGolongan: '01-04-2018',
+    tanggalLahir: '05-12-1970', tanggalBUP: '31-12-2026', sisaBulan: 7,
+    jenisKelamin: 'P', statusKepegawaian: 'PNS',
+    jenisKasus: 'MPP', statusProses: 'Dalam Proses', tahapanSaat: 3, totalTahapan: 5,
+    nomorKasus: 'PPO/MPP/2024/001', tanggalKasus: '01-04-2024',
+    keterangan: 'MPP mulai 1 Agustus 2024 s.d. 31 Januari 2025',
+  },
+  {
+    id: '10', nip: '199201232018011001', nama: 'Joko Kurniawan', jabatan: 'Pelaksana',
+    unitKerja: 'Seksi Verifikasi', satker: 'KPPN Bogor', eselon: '-',
+    pangkatGolongan: 'Penata Muda / III-a', tmtGolongan: '01-04-2022',
+    tanggalLahir: '23-01-1992', tanggalBUP: '31-01-2048', sisaBulan: 284,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'Hilang', statusProses: 'Dalam Proses', tahapanSaat: 2, totalTahapan: 4,
+    nomorKasus: 'PPO/HLG/2024/001', tanggalKasus: '28-03-2024',
+    keterangan: 'Dilaporkan hilang sejak 28 Maret 2024, sudah 70 hari',
+  },
+  {
+    id: '11', nip: '197406221999031002', nama: 'Kartika Sari', jabatan: 'Widyaiswara Muda',
+    unitKerja: 'Bidang Diklat Keuangan', satker: 'BPPK', eselon: 'IV',
+    pangkatGolongan: 'Penata / III-c', tmtGolongan: '01-04-2015',
+    tanggalLahir: '22-06-1974', tanggalBUP: '30-06-2030', sisaBulan: 11,
+    jenisKelamin: 'P', statusKepegawaian: 'PNS',
+    jenisKasus: 'BUP', statusProses: 'Belum Diproses', tahapanSaat: 0, totalTahapan: 5,
+    nomorKasus: 'PPO/BUP/2024/005', tanggalKasus: '01-06-2024',
+  },
+  {
+    id: '12', nip: '197811081999031003', nama: 'Lukman Hakim', jabatan: 'Kepala Seksi Layanan',
+    unitKerja: 'Seksi Layanan Informasi', satker: 'Kanwil DJKN Jakarta', eselon: 'IV',
+    pangkatGolongan: 'Penata Tk.I / III-d', tmtGolongan: '01-04-2021',
+    tanggalLahir: '08-11-1978', tanggalBUP: '30-11-2034', sisaBulan: 5,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'BUP', statusProses: 'Menunggu Verifikasi', tahapanSaat: 3, totalTahapan: 5,
+    nomorKasus: 'PPO/BUP/2024/006', tanggalKasus: '10-03-2024',
+  },
+  {
+    id: '13', nip: '196710151993031001', nama: 'Maya Kusumawati', jabatan: 'Peneliti Madya',
+    unitKerja: 'Pusat Penelitian APBN', satker: 'BKF', eselon: 'IV',
+    pangkatGolongan: 'Pembina Tk.I / IV-b', tmtGolongan: '01-04-2020',
+    tanggalLahir: '15-10-1967', tanggalBUP: '31-10-2025', sisaBulan: 2,
+    jenisKelamin: 'P', statusKepegawaian: 'PNS',
+    jenisKasus: 'MPP', statusProses: 'Dalam Proses', tahapanSaat: 4, totalTahapan: 5,
+    nomorKasus: 'PPO/MPP/2024/002', tanggalKasus: '15-02-2024',
+    keterangan: 'MPP mulai 1 Mei 2024 s.d. 31 Oktober 2025',
+  },
+  {
+    id: '14', nip: '198404202009121001', nama: 'Nanda Prabowo', jabatan: 'Analis Hukum',
+    unitKerja: 'Bagian Hukum dan Humas', satker: 'Ditjen Bea Cukai', eselon: 'IV',
+    pangkatGolongan: 'Penata / III-c', tmtGolongan: '01-04-2019',
+    tanggalLahir: '20-04-1984', tanggalBUP: '30-04-2040', sisaBulan: 192,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'PengunduranDiri', statusProses: 'Dalam Proses', tahapanSaat: 3, totalTahapan: 6,
+    nomorKasus: 'PPO/PGD/2024/002', tanggalKasus: '01-04-2024',
+    jenisPengunduranDiri: 'Tanpa Hak Pensiun',
+  },
+  {
+    id: '15', nip: '197603251998031002', nama: 'Oky Pratama', jabatan: 'Kepala Seksi Pengolahan Data',
+    unitKerja: 'Seksi Pengolahan Data', satker: 'KPP Madya Jakarta Timur', eselon: 'IV',
+    pangkatGolongan: 'Penata Tk.I / III-d', tmtGolongan: '01-10-2022',
+    tanggalLahir: '25-03-1976', tanggalBUP: '31-03-2032', sisaBulan: 4,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'BUP', statusProses: 'Belum Diproses', tahapanSaat: 0, totalTahapan: 5,
+    nomorKasus: 'PPO/BUP/2024/007', tanggalKasus: '05-06-2024',
+  },
+  // Data Arsip - Tewas (5 data)
+  {
+    id: '16', nip: '196408121989031001', nama: 'Prayitno Utomo', jabatan: 'Pengawas Cukai',
+    unitKerja: 'Kantor Pengawasan Cukai', satker: 'DJBC Jakarta', eselon: 'IV',
+    pangkatGolongan: 'Penata Tk.I / III-d', tmtGolongan: '01-04-2018',
+    tanggalLahir: '12-08-1964', tanggalBUP: '31-08-2022', sisaBulan: 0,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'Tewas', statusProses: 'Selesai', tahapanSaat: 6, totalTahapan: 6,
+    nomorKasus: 'PPO/TWS/2023/045', tanggalKasus: '15-11-2023',
+    keterangan: 'SK Pemberhentian telah terbit. Tewas dalam operasi penindakan.',
+  },
+  {
+    id: '17', nip: '197205181995031002', nama: 'Rahmat Hidayat', jabatan: 'Pemeriksa Pajak',
+    unitKerja: 'Seksi Pemeriksaan', satker: 'KPP Pratama Jakarta Menteng', eselon: 'IV',
+    pangkatGolongan: 'Pembina / IV-a', tmtGolongan: '01-04-2017',
+    tanggalLahir: '18-05-1972', tanggalBUP: '31-05-2030', sisaBulan: 0,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'Tewas', statusProses: 'Selesai', tahapanSaat: 6, totalTahapan: 6,
+    nomorKasus: 'PPO/TWS/2023/052', tanggalKasus: '22-12-2023',
+    keterangan: 'SK Pemberhentian telah terbit. Kecelakaan perjalanan dinas.',
+  },
+  {
+    id: '18', nip: '198107081998031003', nama: 'Samsul Arifin', jabatan: 'Verifikator',
+    unitKerja: 'Seksi Verifikasi', satker: 'KPPN Bandung', eselon: '-',
+    pangkatGolongan: 'Penata / III-c', tmtGolongan: '01-04-2019',
+    tanggalLahir: '08-07-1981', tanggalBUP: '31-07-2037', sisaBulan: 0,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'Tewas', statusProses: 'Selesai', tahapanSaat: 6, totalTahapan: 6,
+    nomorKasus: 'PPO/TWS/2024/008', tanggalKasus: '05-02-2024',
+    keterangan: 'SK Pemberhentian telah terbit. Bencana alam saat tugas.',
+  },
+  {
+    id: '19', nip: '197909142002121001', nama: 'Teguh Prasetyo', jabatan: 'Pelaksana',
+    unitKerja: 'Seksi Penagihan', satker: 'KPP Pratama Surabaya Mulyorejo', eselon: '-',
+    pangkatGolongan: 'Penata Muda Tk.I / III-b', tmtGolongan: '01-04-2020',
+    tanggalLahir: '14-09-1979', tanggalBUP: '30-09-2035', sisaBulan: 0,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'Tewas', statusProses: 'Selesai', tahapanSaat: 6, totalTahapan: 6,
+    nomorKasus: 'PPO/TWS/2024/011', tanggalKasus: '18-03-2024',
+    keterangan: 'SK Pemberhentian telah terbit. Insiden saat tugas lapangan.',
+  },
+  {
+    id: '20', nip: '198305192006041001', nama: 'Wahyu Santoso', jabatan: 'Analis Kepabeanan',
+    unitKerja: 'Seksi Fasilitas Kepabeanan', satker: 'DJBC Soekarno Hatta', eselon: 'IV',
+    pangkatGolongan: 'Penata / III-c', tmtGolongan: '01-04-2018',
+    tanggalLahir: '19-05-1983', tanggalBUP: '31-05-2039', sisaBulan: 0,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'Tewas', statusProses: 'Selesai', tahapanSaat: 6, totalTahapan: 6,
+    nomorKasus: 'PPO/TWS/2024/015', tanggalKasus: '22-04-2024',
+    keterangan: 'SK Pemberhentian telah terbit. Kecelakaan kerja.',
+  },
+  // Data Arsip - Pengunduran Diri (5 data)
+  {
+    id: '21', nip: '198901152014031002', nama: 'Yudi Hermawan', jabatan: 'Analis Data',
+    unitKerja: 'Bidang Data dan Informasi', satker: 'Setjen Kemenkeu', eselon: 'IV',
+    pangkatGolongan: 'Penata Muda Tk.I / III-b', tmtGolongan: '01-04-2021',
+    tanggalLahir: '15-01-1989', tanggalBUP: '31-01-2045', sisaBulan: 0,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'PengunduranDiri', statusProses: 'Selesai', tahapanSaat: 6, totalTahapan: 6,
+    nomorKasus: 'PPO/PGD/2023/078', tanggalKasus: '10-10-2023',
+    keterangan: 'SK Pemberhentian Atas Permintaan Sendiri telah terbit. Alasan pribadi.',
+  },
+  {
+    id: '22', nip: '199106082016021001', nama: 'Zainal Abidin', jabatan: 'Programmer',
+    unitKerja: 'Direktorat Sistem Informasi', satker: 'DJP', eselon: '-',
+    pangkatGolongan: 'Penata Muda / III-a', tmtGolongan: '01-04-2022',
+    tanggalLahir: '08-06-1991', tanggalBUP: '30-06-2047', sisaBulan: 0,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'PengunduranDiri', statusProses: 'Selesai', tahapanSaat: 6, totalTahapan: 6,
+    nomorKasus: 'PPO/PGD/2023/092', tanggalKasus: '15-11-2023',
+    keterangan: 'SK Pemberhentian Atas Permintaan Sendiri telah terbit. Pindah ke swasta.',
+  },
+  {
+    id: '23', nip: '198808242012022001', nama: 'Ayu Lestari', jabatan: 'Analis Keuangan',
+    unitKerja: 'Bagian Keuangan', satker: 'BPPK', eselon: 'IV',
+    pangkatGolongan: 'Penata / III-c', tmtGolongan: '01-04-2020',
+    tanggalLahir: '24-08-1988', tanggalBUP: '31-08-2044', sisaBulan: 0,
+    jenisKelamin: 'P', statusKepegawaian: 'PNS',
+    jenisKasus: 'PengunduranDiri', statusProses: 'Selesai', tahapanSaat: 6, totalTahapan: 6,
+    nomorKasus: 'PPO/PGD/2024/003', tanggalKasus: '05-01-2024',
+    keterangan: 'SK Pemberhentian Atas Permintaan Sendiri telah terbit. Alasan keluarga.',
+  },
+  {
+    id: '24', nip: '199203172017011001', nama: 'Bayu Anggara', jabatan: 'Analis Kebijakan',
+    unitKerja: 'Pusat Kebijakan Pendapatan', satker: 'BKF', eselon: 'IV',
+    pangkatGolongan: 'Penata Muda / III-a', tmtGolongan: '01-04-2023',
+    tanggalLahir: '17-03-1992', tanggalBUP: '31-03-2048', sisaBulan: 0,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'PengunduranDiri', statusProses: 'Selesai', tahapanSaat: 6, totalTahapan: 6,
+    nomorKasus: 'PPO/PGD/2024/012', tanggalKasus: '28-02-2024',
+    keterangan: 'SK Pemberhentian Atas Permintaan Sendiri telah terbit. Melanjutkan studi.',
+  },
+  {
+    id: '25', nip: '198705132010122001', nama: 'Citra Dewi', jabatan: 'Analis Sistem',
+    unitKerja: 'Bidang TI', satker: 'DJKN', eselon: 'IV',
+    pangkatGolongan: 'Penata Muda Tk.I / III-b', tmtGolongan: '01-04-2019',
+    tanggalLahir: '13-05-1987', tanggalBUP: '31-05-2043', sisaBulan: 0,
+    jenisKelamin: 'P', statusKepegawaian: 'PNS',
+    jenisKasus: 'PengunduranDiri', statusProses: 'Selesai', tahapanSaat: 6, totalTahapan: 6,
+    nomorKasus: 'PPO/PGD/2024/018', tanggalKasus: '20-03-2024',
+    keterangan: 'SK Pemberhentian Atas Permintaan Sendiri telah terbit. Pindah domisili.',
+  },
+  // Data Arsip - Hilang (5 data)
+  {
+    id: '26', nip: '198409152009011001', nama: 'Dedi Kurniawan', jabatan: 'Pelaksana',
+    unitKerja: 'Seksi Layanan', satker: 'KPPN Yogyakarta', eselon: '-',
+    pangkatGolongan: 'Pengatur Tk.I / II-d', tmtGolongan: '01-04-2017',
+    tanggalLahir: '15-09-1984', tanggalBUP: '30-09-2040', sisaBulan: 0,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'Hilang', statusProses: 'Selesai', tahapanSaat: 4, totalTahapan: 4,
+    nomorKasus: 'PPO/HLG/2022/018', tanggalKasus: '12-05-2022',
+    keterangan: 'SK Pemberhentian telah terbit. Dinyatakan hilang lebih dari 12 bulan.',
+  },
+  {
+    id: '27', nip: '199001082015031001', nama: 'Edi Susanto', jabatan: 'Analis Penerimaan',
+    unitKerja: 'Seksi Penerimaan', satker: 'KPP Pratama Malang Utara', eselon: '-',
+    pangkatGolongan: 'Penata Muda / III-a', tmtGolongan: '01-04-2021',
+    tanggalLahir: '08-01-1990', tanggalBUP: '31-01-2046', sisaBulan: 0,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'Hilang', statusProses: 'Selesai', tahapanSaat: 4, totalTahapan: 4,
+    nomorKasus: 'PPO/HLG/2023/007', tanggalKasus: '22-01-2023',
+    keterangan: 'SK Pemberhentian telah terbit. Dinyatakan hilang lebih dari 12 bulan.',
+  },
+  {
+    id: '28', nip: '198712192012022001', nama: 'Fitri Rahmawati', jabatan: 'Pelaksana',
+    unitKerja: 'Subbagian Umum', satker: 'KPPN Semarang I', eselon: '-',
+    pangkatGolongan: 'Pengatur / II-c', tmtGolongan: '01-04-2018',
+    tanggalLahir: '19-12-1987', tanggalBUP: '31-12-2043', sisaBulan: 0,
+    jenisKelamin: 'P', statusKepegawaian: 'PNS',
+    jenisKasus: 'Hilang', statusProses: 'Selesai', tahapanSaat: 4, totalTahapan: 4,
+    nomorKasus: 'PPO/HLG/2023/024', tanggalKasus: '08-08-2023',
+    keterangan: 'SK Pemberhentian telah terbit. Dinyatakan hilang lebih dari 12 bulan.',
+  },
+  {
+    id: '29', nip: '199106252016021001', nama: 'Gilang Ramadhan', jabatan: 'Analis Layanan',
+    unitKerja: 'Seksi Informasi', satker: 'KPPN Surabaya I', eselon: '-',
+    pangkatGolongan: 'Penata Muda / III-a', tmtGolongan: '01-04-2022',
+    tanggalLahir: '25-06-1991', tanggalBUP: '30-06-2047', sisaBulan: 0,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'Hilang', statusProses: 'Selesai', tahapanSaat: 4, totalTahapan: 4,
+    nomorKasus: 'PPO/HLG/2023/041', tanggalKasus: '15-11-2023',
+    keterangan: 'SK Pemberhentian telah terbit. Dinyatakan hilang lebih dari 12 bulan.',
+  },
+  {
+    id: '30', nip: '198508142010121001', nama: 'Hani Wijayanti', jabatan: 'Pelaksana',
+    unitKerja: 'Seksi Verifikasi', satker: 'KPPN Denpasar', eselon: '-',
+    pangkatGolongan: 'Pengatur Tk.I / II-d', tmtGolongan: '01-04-2019',
+    tanggalLahir: '14-08-1985', tanggalBUP: '31-08-2041', sisaBulan: 0,
+    jenisKelamin: 'P', statusKepegawaian: 'PNS',
+    jenisKasus: 'Hilang', statusProses: 'Selesai', tahapanSaat: 4, totalTahapan: 4,
+    nomorKasus: 'PPO/HLG/2024/003', tanggalKasus: '10-01-2024',
+    keterangan: 'SK Pemberhentian telah terbit. Dinyatakan hilang lebih dari 12 bulan.',
+  },
+  // Data Arsip - MPP (5 data)
+  {
+    id: '31', nip: '196912052000121001', nama: 'Irawan Setiawan', jabatan: 'Kepala Seksi Anggaran',
+    unitKerja: 'Seksi Anggaran', satker: 'Kanwil DJPb Jawa Timur', eselon: 'IV',
+    pangkatGolongan: 'Pembina / IV-a', tmtGolongan: '01-04-2017',
+    tanggalLahir: '05-12-1969', tanggalBUP: '31-12-2025', sisaBulan: 0,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'MPP', statusProses: 'Selesai', tahapanSaat: 5, totalTahapan: 5,
+    nomorKasus: 'PPO/MPP/2023/045', tanggalKasus: '15-06-2023',
+    keterangan: 'MPP selesai. Telah memasuki masa BUP.',
+  },
+  {
+    id: '32', nip: '197008172001122001', nama: 'Juwita Sari', jabatan: 'Widyaiswara Madya',
+    unitKerja: 'Pusdiklat Anggaran dan Perbendaharaan', satker: 'BPPK', eselon: 'IV',
+    pangkatGolongan: 'Pembina Tk.I / IV-b', tmtGolongan: '01-04-2019',
+    tanggalLahir: '17-08-1970', tanggalBUP: '31-08-2026', sisaBulan: 0,
+    jenisKelamin: 'P', statusKepegawaian: 'PNS',
+    jenisKasus: 'MPP', statusProses: 'Selesai', tahapanSaat: 5, totalTahapan: 5,
+    nomorKasus: 'PPO/MPP/2023/062', tanggalKasus: '01-09-2023',
+    keterangan: 'MPP selesai. Telah memasuki masa BUP.',
+  },
+  {
+    id: '33', nip: '196911252000031001', nama: 'Krisna Mulyadi', jabatan: 'Kepala Bidang Verifikasi',
+    unitKerja: 'Bidang Verifikasi dan Akuntansi', satker: 'Kanwil DJPb Jawa Barat', eselon: 'III',
+    pangkatGolongan: 'Pembina Utama Muda / IV-c', tmtGolongan: '01-10-2020',
+    tanggalLahir: '25-11-1969', tanggalBUP: '30-11-2025', sisaBulan: 0,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'MPP', statusProses: 'Selesai', tahapanSaat: 5, totalTahapan: 5,
+    nomorKasus: 'PPO/MPP/2023/071', tanggalKasus: '15-10-2023',
+    keterangan: 'MPP selesai. Telah memasuki masa BUP.',
+  },
+  {
+    id: '34', nip: '197101082002122001', nama: 'Lestari Wulandari', jabatan: 'Peneliti Madya',
+    unitKerja: 'Pusat Penelitian dan Pengembangan', satker: 'BKF', eselon: 'IV',
+    pangkatGolongan: 'Pembina / IV-a', tmtGolongan: '01-04-2018',
+    tanggalLahir: '08-01-1971', tanggalBUP: '31-01-2027', sisaBulan: 0,
+    jenisKelamin: 'P', statusKepegawaian: 'PNS',
+    jenisKasus: 'MPP', statusProses: 'Selesai', tahapanSaat: 5, totalTahapan: 5,
+    nomorKasus: 'PPO/MPP/2023/089', tanggalKasus: '20-11-2023',
+    keterangan: 'MPP selesai. Telah memasuki masa BUP.',
+  },
+  {
+    id: '35', nip: '197003192001031001', nama: 'Muhamad Yusuf', jabatan: 'Kepala Seksi Kepatuhan',
+    unitKerja: 'Seksi Kepatuhan Internal', satker: 'Kanwil DJP Jakarta Selatan', eselon: 'IV',
+    pangkatGolongan: 'Pembina Tk.I / IV-b', tmtGolongan: '01-04-2021',
+    tanggalLahir: '19-03-1970', tanggalBUP: '31-03-2026', sisaBulan: 0,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'MPP', statusProses: 'Selesai', tahapanSaat: 5, totalTahapan: 5,
+    nomorKasus: 'PPO/MPP/2024/008', tanggalKasus: '05-02-2024',
+    keterangan: 'MPP selesai. Telah memasuki masa BUP.',
+  },
+  // Dummy data tambahan Pengunduran Diri per jenis
+  {
+    id: '36', nip: '198602142010011001', nama: 'Rizky Fadillah', jabatan: 'Analis Akuntansi',
+    unitKerja: 'Bagian Akuntansi dan Pelaporan', satker: 'DJPB', eselon: 'IV',
+    pangkatGolongan: 'Penata Tk.I / III-d', tmtGolongan: '01-04-2022',
+    tanggalLahir: '14-02-1986', tanggalBUP: '28-02-2042', sisaBulan: 188,
+    jenisKelamin: 'L', statusKepegawaian: 'PNS',
+    jenisKasus: 'PengunduranDiri', statusProses: 'Menunggu Verifikasi', tahapanSaat: 3, totalTahapan: 6,
+    nomorKasus: 'PPO/PGD/2024/036', tanggalKasus: '10-06-2024',
+    keterangan: 'Pengunduran diri karena ingin berwirausaha. Masa kerja memenuhi syarat hak pensiun.',
+    jenisPengunduranDiri: 'Dengan Hak Pensiun',
+  },
+  {
+    id: '37', nip: '199407282019021001', nama: 'Sari Melati', jabatan: 'Pelaksana',
+    unitKerja: 'Seksi Layanan Umum', satker: 'KPP Pratama Bekasi Utara', eselon: '-',
+    pangkatGolongan: 'Penata Muda / III-a', tmtGolongan: '01-03-2023',
+    tanggalLahir: '28-07-1994', tanggalBUP: '31-07-2050', sisaBulan: 290,
+    jenisKelamin: 'P', statusKepegawaian: 'PNS',
+    jenisKasus: 'PengunduranDiri', statusProses: 'Dalam Proses', tahapanSaat: 2, totalTahapan: 6,
+    nomorKasus: 'PPO/PGD/2024/037', tanggalKasus: '03-06-2024',
+    keterangan: 'Pengunduran diri karena mengikuti suami pindah domisili ke luar negeri. Masa kerja belum memenuhi syarat hak pensiun.',
+    jenisPengunduranDiri: 'Tanpa Hak Pensiun',
+  },
+  {
+    id: '38', nip: '199509142020121001', nama: 'Dian Puspitasari', jabatan: 'Analis Kepegawaian',
+    unitKerja: 'Bagian Kepegawaian', satker: 'Biro SDM Kemenkeu', eselon: 'IV',
+    pangkatGolongan: 'Penata Muda / III-a', tmtGolongan: '01-01-2021',
+    tanggalLahir: '14-09-1995', tanggalBUP: '30-09-2051', sisaBulan: 328,
+    jenisKelamin: 'P', statusKepegawaian: 'PNS',
+    jenisKasus: 'PengunduranDiri', statusProses: 'Menunggu Persetujuan', tahapanSaat: 5, totalTahapan: 6,
+    nomorKasus: 'PPO/PGD/2024/038', tanggalKasus: '20-05-2024',
+    keterangan: 'Pengunduran diri karena mengikuti suami pindah ke luar kota. Masa kerja belum memenuhi syarat hak pensiun.',
+    jenisPengunduranDiri: 'Tanpa Hak Pensiun',
+  },
+];
+
+export const getStatusColor = (status: StatusProses): string => {
+  switch (status) {
+    case 'Belum Diproses': return '#6B7280';
+    case 'Dalam Proses': return '#3B82F6';
+    case 'Menunggu Verifikasi': return '#F59E0B';
+    case 'Menunggu Persetujuan': return '#8B5CF6';
+    case 'Selesai': return '#10B981';
+    case 'Ditolak': return '#EF4444';
+    case 'Perlu Tindak Lanjut': return '#F97316';
+    default: return '#6B7280';
+  }
+};
+
+export const getKasusColor = (kasus: JenisKasus): string => {
+  switch (kasus) {
+    case 'BUP': return '#2563EB';
+    case 'Meninggal': return '#6B7280';
+    case 'Uzur': return '#7C3AED';
+    case 'Tewas': return '#991B1B';
+    case 'PengunduranDiri': return '#7C3AED';
+    case 'Hilang': return '#374151';
+    case 'Ditemukan': return '#059669';
+    case 'MPP': return '#0891B2';
+    case 'Normal': return '#10B981';
+    default: return '#6B7280';
+  }
+};
+
+export const getKasusLabel = (kasus: JenisKasus): string => {
+  switch (kasus) {
+    case 'BUP': return 'Batas Usia Pensiun';
+    case 'Meninggal': return 'Meninggal Dunia';
+    case 'Uzur': return 'Uzur / Sakit';
+    case 'Tewas': return 'Tewas';
+    case 'PengunduranDiri': return 'Pengunduran Diri';
+    case 'Hilang': return 'Hilang';
+    case 'Ditemukan': return 'Ditemukan';
+    case 'MPP': return 'Masa Persiapan Pensiun';
+    case 'Normal': return 'Normal';
+    default: return kasus;
+  }
+};
+
+export const getSisaBulanColor = (bulan: number): string => {
+  if (bulan <= 0) return '#6B7280';
+  if (bulan <= 3) return '#EF4444';
+  if (bulan <= 6) return '#F97316';
+  if (bulan <= 12) return '#F59E0B';
+  return '#10B981';
+};
+
+export const getSisaBulanLabel = (bulan: number, jenis: JenisKasus): string => {
+  if (jenis !== 'BUP' && jenis !== 'MPP') return '-';
+  if (bulan <= 0) return 'Sudah BUP';
+  if (bulan <= 3) return `${bulan} bulan (Kritis)`;
+  if (bulan <= 6) return `${bulan} bulan (Segera)`;
+  if (bulan <= 12) return `${bulan} bulan (Perhatian)`;
+  return `${bulan} bulan`;
+};
