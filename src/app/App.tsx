@@ -1,16 +1,21 @@
 import { useState, useEffect } from 'react';
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
-import { MonitoringDashboard } from './components/MonitoringDashboard';
+// import { MonitoringDashboard } from './components/MonitoringDashboard';
 import { FlowBUP } from './components/FlowBUP';
 import { FlowTewas } from './components/FlowTewas';
 import { FlowPengunduranDiri } from './components/FlowPengunduranDiri';
 import { FlowHilang } from './components/FlowHilang';
 import { FlowVerifikasi } from './components/FlowVerifikasi';
 import { FlowMPP } from './components/FlowMPP';
+import { Role } from './types/role.types';
+import type { View } from './types/view.types';
 
-export type Role = 'pegawai' | 'atasan' | 'sdm-satker' | 'sdm-ue1' | 'biro-sdm';
-export type View = 'monitoring' | 'bup' | 'tewas' | 'pengunduran-diri' | 'hilang' | 'verifikasi' | 'mpp';
+// --------------------------------------------------------------------------
+import { MonitoringPage } from './pages/monitoring/MonitoringPage';
+
+
+// --------------------------------------------------------------------------
 
 export const ROLE_LABELS: Record<Role, string> = {
   'pegawai': 'Pegawai',
@@ -89,7 +94,7 @@ export default function App() {
           onNavigate={setCurrentView}
         />
         <main className="flex-1 overflow-auto">
-          {currentView === 'monitoring' && <MonitoringDashboard role={currentRole} onNavigate={setCurrentView} />}
+          {currentView === 'monitoring' && <MonitoringPage role={currentRole} onNavigate={setCurrentView} />}
           {currentView === 'bup' && canAccess(currentRole, 'bup') && <FlowBUP role={currentRole} />}
           {currentView === 'tewas' && canAccess(currentRole, 'tewas') && <FlowTewas role={currentRole} />}
           {currentView === 'pengunduran-diri' && canAccess(currentRole, 'pengunduran-diri') && <FlowPengunduranDiri role={currentRole} />}

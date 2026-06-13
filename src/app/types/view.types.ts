@@ -1,0 +1,1 @@
+export type View = 'monitoring' | 'bup' | 'tewas' | 'pengunduran-diri' | 'hilang' | 'verifikasi' | 'mpp';
