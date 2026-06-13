@@ -7,9 +7,15 @@ import {
 } from 'lucide-react';
 import { FlowBUPUe1 } from './FlowBUPUe1';
 import type { Role } from '../App';
-import {
-  MOCK_PEGAWAI, getKasusColor, getKasusLabel, getSisaBulanColor, getSisaBulanLabel, type Pegawai,
-} from '../data/mockData';
+// import {
+//   MOCK_PEGAWAI, getKasusColor, getKasusLabel, getSisaBulanColor, getSisaBulanLabel, type Pegawai,
+// } from '../data/mockData';
+
+import { getKasusColor, getKasusLabel, getSisaBulanColor, getSisaBulanLabel  } from '../utils/case.util';
+import { type Pegawai } from '../types/employee.types';
+import { MOCK_PEGAWAI } from '../data/mockData';
+
+
 import { WorkflowStepper, type Step } from './WorkflowStepper';
 
 // ─── Static constants ──────────────────────────────────────────────────────────

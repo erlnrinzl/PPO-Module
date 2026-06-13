@@ -6,7 +6,12 @@ import {
   ThumbsUp, ThumbsDown, Info,
 } from 'lucide-react';
 import svgPaths from '../../imports/UpsdmUe1BupMeninggalUzurBerkasUsulan/svg-x8r0wrzwge';
-import { MOCK_PEGAWAI, getKasusColor, getKasusLabel } from '../data/mockData';
+// import { MOCK_PEGAWAI, getKasusColor, getKasusLabel } from '../data/mockData';
+
+import { getKasusColor, getKasusLabel, getSisaBulanColor, getSisaBulanLabel  } from '../utils/case.util';
+import { type Pegawai } from '../types/employee.types';
+import { MOCK_PEGAWAI } from '../data/mockData';
+
 
 // ─── Types ──────────────────────────────────────────────────────────────────────
 

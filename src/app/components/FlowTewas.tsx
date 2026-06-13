@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { HeartCrack, FileText, Send, X, Check, AlertCircle, ExternalLink, Search, Plus, ChevronRight } from 'lucide-react';
 import type { Role } from '../App';
-import { MOCK_PEGAWAI, getStatusColor, type Pegawai, type StatusProses } from '../data/mockData';
+// import { MOCK_PEGAWAI, getStatusColor, type Pegawai, type StatusProses } from '../data/mockData';
+import { getStatusColor, getKasusColor, getKasusLabel, getSisaBulanColor, getSisaBulanLabel  } from '../utils/case.util';
+import { type Pegawai, StatusProses } from '../types/employee.types';
+import { MOCK_PEGAWAI } from '../data/mockData';
+
+
 import { WorkflowStepper, type Step } from './WorkflowStepper';
 import { BerkasSection, type BerkasFile } from './BerkasSection';
 import { MiniDashboard } from './MiniDashboard';

@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import { Search, X, Check, AlertCircle, Clock, MapPin, Phone, Plus, ChevronRight, UserX, ArrowLeft } from 'lucide-react';
 import type { Role } from '../App';
-import { MOCK_PEGAWAI, getStatusColor, type Pegawai, type StatusProses } from '../data/mockData';
+// import { MOCK_PEGAWAI, getStatusColor, type Pegawai, type StatusProses } from '../data/mockData';
 import { WorkflowStepper, type Step } from './WorkflowStepper';
 import { BerkasSection, type BerkasFile } from './BerkasSection';
 import { MiniDashboard } from './MiniDashboard';
+
+import { getStatusColor, getKasusColor, getKasusLabel, getSisaBulanColor, getSisaBulanLabel  } from '../utils/case.util';
+import { type Pegawai, StatusProses } from '../types/employee.types';
+import { MOCK_PEGAWAI } from '../data/mockData';
+
 
 const BERKAS_HILANG: BerkasFile[] = [
   { id: 'h1', nama: 'Laporan Kepolisian (Kehilangan)', tipe: 'PDF', tanggal: '30 Mar 2024', ukuran: '298 KB', status: 'uploaded' },
@@ -629,7 +634,7 @@ export function FlowHilang({ role }: FlowHilangProps) {
         ))}
       </div>
 
-      {mainTab === 'aktif' && <MiniDashboard data={dataAktif} onFilterClick={setStatusFilter} currentFilter={statusFilter} />}
+      {mainTab === 'aktif' && <MiniDashboard data={dataAktif} onFilterClick={setStatusFilter} currentFilter={statusFilter as StatusProses as any} />}
 
       {/* Filter panel */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 space-y-4">

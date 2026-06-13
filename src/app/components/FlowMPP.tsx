@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { CalendarClock, X, Check, AlertCircle, Calendar, User, Building2, ShieldCheck, ChevronRight, Search, ArrowLeft } from 'lucide-react';
 import type { Role } from '../App';
-import { MOCK_PEGAWAI, getStatusColor, type Pegawai, type StatusProses } from '../data/mockData';
+// import { MOCK_PEGAWAI, getStatusColor, type Pegawai, type StatusProses } from '../data/mockData';
+
+import { getStatusColor, getKasusColor, getKasusLabel, getSisaBulanColor, getSisaBulanLabel  } from '../utils/case.util';
+import { type Pegawai, StatusProses } from '../types/employee.types';
+import { MOCK_PEGAWAI } from '../data/mockData';
+
 import { WorkflowStepper, type Step } from './WorkflowStepper';
 import { BerkasSection, type BerkasFile } from './BerkasSection';
 import { MiniDashboard } from './MiniDashboard';
@@ -590,7 +595,7 @@ export function FlowMPP({ role }: FlowMPPProps) {
         ))}
       </div>
 
-      {mainTab === 'aktif' && <MiniDashboard data={dataAktif} onFilterClick={setStatusFilter} currentFilter={statusFilter} />}
+      {mainTab === 'aktif' && <MiniDashboard data={dataAktif} onFilterClick={setStatusFilter} currentFilter={statusFilter as StatusProses as any} />}
 
       {mainTab === 'aktif' && (
         <div className="grid grid-cols-3 gap-4">

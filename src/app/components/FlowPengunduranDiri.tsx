@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { DoorOpen, X, Check, Upload, AlertCircle, ChevronRight, User, Building2, ShieldCheck, Search, UserCircle2, CheckCircle2, XCircle, Calendar, Users2, FileText, Send, Eye, Stamp, ArrowLeft, Download } from 'lucide-react';
 import type { Role } from '../App';
-import { MOCK_PEGAWAI, getStatusColor, type Pegawai, type StatusProses } from '../data/mockData';
+// import { MOCK_PEGAWAI, getStatusColor, type Pegawai, type StatusProses } from '../data/mockData';
+
+import { getStatusColor, getKasusColor, getKasusLabel, getSisaBulanColor, getSisaBulanLabel  } from '../utils/case.util';
+import { type Pegawai, StatusProses } from '../types/employee.types';
+import { MOCK_PEGAWAI } from '../data/mockData';
+
+
 import { WorkflowStepper, type Step } from './WorkflowStepper';
 import { BerkasSection, type BerkasFile } from './BerkasSection';
 import { MiniDashboard } from './MiniDashboard';
@@ -3931,7 +3937,7 @@ KEPALA BIRO SUMBER DAYA MANUSIA,
       </div>
 
       {/* Mini Dashboard Status - only for active */}
-      {mainTab === 'aktif' && <MiniDashboard data={dataAktif} onFilterClick={setStatusFilter} currentFilter={statusFilter} />}
+      {mainTab === 'aktif' && <MiniDashboard data={dataAktif} onFilterClick={setStatusFilter} currentFilter={statusFilter as any} />}
 
       {/* Filter panel */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 space-y-4">

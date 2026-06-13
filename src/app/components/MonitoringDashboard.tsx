@@ -9,10 +9,15 @@ import {
   ResponsiveContainer, Cell, Legend
 } from 'recharts';
 import type { Role, View } from '../App';
-import {
-  MOCK_PEGAWAI, getStatusColor, getKasusColor, getKasusLabel,
-  getSisaBulanColor, getSisaBulanLabel, type Pegawai, type JenisKasus
-} from '../data/mockData';
+// import {
+//   MOCK_PEGAWAI, getStatusColor, getKasusColor, getKasusLabel,
+//   getSisaBulanColor, getSisaBulanLabel, type Pegawai, type JenisKasus
+// } from '../data/mockData';
+
+import { getStatusColor, getKasusColor, getKasusLabel, getSisaBulanColor, getSisaBulanLabel  } from '../utils/case.util';
+import { type Pegawai, type JenisKasus } from '../types/employee.types';
+import { MOCK_PEGAWAI } from '../data/mockData';
+
 
 const CHART_DATA = [
   { bulan: 'Jul 2024', BUP: 1, MPP: 0, PengunduranDiri: 0, Lainnya: 0 },
