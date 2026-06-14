@@ -1,4 +1,4 @@
-import type { StatusUsulan } from "../dismissal-proposal.types";
+import type { StatusUsulan } from "../proposalFile.types";
 
 const STATUS_USULAN_COLOR_MAP: Record<StatusUsulan, string> = {
   Draft: "#6B7280",

@@ -1,8 +1,6 @@
 import type { Role } from '../types/role.types';
 import type { View } from '../types/view.types';
 
-export type { Role, View };
-
 export const ROLE_LABELS: Record<Role, string> = {
   'pegawai': 'Pegawai',
   'atasan': 'Atasan Langsung',

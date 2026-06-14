@@ -6,7 +6,7 @@ import {
 import type {
   BerkasUsulan,
   PegawaiWithStatus,
-} from "../dismissal-proposal.types";
+} from "../proposalFile.types";
 
 interface UseProposalDetailParams {
   berkas: BerkasUsulan;

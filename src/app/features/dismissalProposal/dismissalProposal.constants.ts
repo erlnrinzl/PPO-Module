@@ -4,7 +4,7 @@ import type {
   BerkasUsulan,
   LifecycleItem,
   PegawaiWithStatus,
-} from "./dismissal-proposal.types";
+} from "./proposalFile.types";
 
 export const BASE_DOKUMEN: Dokumen[] = [
   { id: "d1", label: "Clearance BMN", wajib: true, status: "uploaded" },
