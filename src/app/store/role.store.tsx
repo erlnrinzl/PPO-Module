@@ -1,10 +1,9 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from 'react';
-import { getDefaultView, type Role, type View } from '../routes/routeConfig';
+import { type Role } from '../routes/routeConfig';
 
 interface RoleStoreValue {
   currentRole: Role;
   setCurrentRole: (role: Role) => void;
-  changeRole: (role: Role, currentView: View) => View | null;
 }
 
 const RoleStoreContext = createContext<RoleStoreValue | null>(null);
@@ -15,10 +14,6 @@ export function RoleStoreProvider({ children }: { children: ReactNode }) {
   const value = useMemo<RoleStoreValue>(() => ({
     currentRole,
     setCurrentRole,
-    changeRole: (role: Role, currentView: View) => {
-      setCurrentRole(role);
-      return getDefaultView(role) === currentView ? null : getDefaultView(role);
-    },
   }), [currentRole]);
 
   return <RoleStoreContext.Provider value={value}>{children}</RoleStoreContext.Provider>;

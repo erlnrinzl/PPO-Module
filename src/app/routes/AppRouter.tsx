@@ -22,7 +22,7 @@ import { RoleBasedRoute } from './RoleBasedRoute';
 function AppShell() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { currentRole, changeRole } = useRoleStore();
+  const { currentRole, setCurrentRole } = useRoleStore();
   const currentView = getViewFromPath(location.pathname) ?? getDefaultView(currentRole);
 
   const handleNavigate = (view: View) => {
@@ -30,7 +30,8 @@ function AppShell() {
   };
 
   const handleRoleChange = (newRole: Role) => {
-    const fallbackView = changeRole(newRole, currentView);
+    setCurrentRole(newRole);
+    const fallbackView = getDefaultView(newRole) === currentView ? null : getDefaultView(newRole);
 
     if (fallbackView) {
       navigate(getPathForView(fallbackView), { replace: true });
