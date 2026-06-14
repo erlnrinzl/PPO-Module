@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Search, X, Check, AlertCircle, Clock, MapPin, Phone, Plus, ChevronRight, UserX, ArrowLeft } from 'lucide-react';
-import type { Role } from '../App';
+import type { Role } from '../routes/routeConfig';
 // import { MOCK_PEGAWAI, getStatusColor, type Pegawai, type StatusProses } from '../data/mockData';
 import { WorkflowStepper, type Step } from './WorkflowStepper';
 import { BerkasSection, type BerkasFile } from './BerkasSection';

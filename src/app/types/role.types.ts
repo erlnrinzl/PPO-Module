@@ -1,1 +1,1 @@
-export type Role = 'pegawai' | 'atasan' | 'sdm-satker' | 'sdm-ue1' | 'biro-sdm';
+export type Role = 'pegawai' | 'atasan' | 'sdm-satker-1' | 'sdm-satker-2' | 'sdm-ue1' | 'biro-sdm';

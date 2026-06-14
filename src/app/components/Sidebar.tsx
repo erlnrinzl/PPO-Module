@@ -2,8 +2,7 @@ import {
   LayoutDashboard, Users, HeartCrack, DoorOpen, Search,
   FileCheck2, CalendarClock, ShieldCheck
 } from 'lucide-react';
-import type { View, Role } from '../App';
-import { VIEW_ACCESS } from '../App';
+import { VIEW_ACCESS, type Role, type View } from '../routes/routeConfig';
 
 interface NavItem {
   id: View;

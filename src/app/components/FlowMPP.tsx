@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CalendarClock, X, Check, AlertCircle, Calendar, User, Building2, ShieldCheck, ChevronRight, Search, ArrowLeft } from 'lucide-react';
-import type { Role } from '../App';
+import type { Role } from '../routes/routeConfig';
 // import { MOCK_PEGAWAI, getStatusColor, type Pegawai, type StatusProses } from '../data/mockData';
 
 import { getStatusColor, getKasusColor, getKasusLabel, getSisaBulanColor, getSisaBulanLabel  } from '../utils/case.util';

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Bell, ChevronRight, Settings, X, ChevronDown } from 'lucide-react';
-import type { Role, View } from '../App';
-import { ROLE_LABELS, VIEW_LABELS } from '../App';
+import { PAGE_LABELS, ROLE_LABELS, type Role, type View } from '../routes/routeConfig';
 
 interface Notification {
   id: string;
@@ -98,7 +97,7 @@ export function Header({ currentRole, onRoleChange, currentView }: HeaderProps) 
   const unreadCount = notifs.filter(n => n.unread).length;
   const userProfile = ROLE_USER_PROFILES[currentRole];
 
-  const viewParts = VIEW_LABELS[currentView].split(':');
+  const viewParts = PAGE_LABELS[currentView].split(':');
   const flowLabel = viewParts[0].trim();
   const viewTitle = viewParts[1]?.trim() ?? viewParts[0].trim();
 

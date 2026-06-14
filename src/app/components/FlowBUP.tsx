@@ -6,7 +6,7 @@ import {
   Eye, ChevronDown, Upload,
 } from 'lucide-react';
 import { FlowBUPUe1 } from './FlowBUPUe1';
-import type { Role } from '../App';
+import type { Role } from '../routes/routeConfig';
 // import {
 //   MOCK_PEGAWAI, getKasusColor, getKasusLabel, getSisaBulanColor, getSisaBulanLabel, type Pegawai,
 // } from '../data/mockData';

@@ -4,7 +4,7 @@ import {
   Stamp, Search, ChevronRight, ArrowLeft, Users, Calendar,
   ClipboardList, FileText, CheckCircle2,
 } from 'lucide-react';
-import type { Role } from '../App';
+import type { Role } from '../routes/routeConfig';
 // import { getKasusColor } from '../data/mockData';
 
 import { getStatusColor, getKasusColor, getKasusLabel, getSisaBulanColor, getSisaBulanLabel  } from '../utils/case.util';
