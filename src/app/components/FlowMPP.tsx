@@ -57,13 +57,13 @@ function MPPForm({ pegawai, role, onClose, onSubmit, isArchived = false }: MPPFo
   const [catatan, setCatatan] = useState('');
 
   const isPegawai = !isArchived && role === 'pegawai';
-  const canReview = !isArchived && ['atasan', 'sdm-satker', 'sdm-ue1', 'biro-sdm'].includes(role);
+  const canReview = !isArchived && ['atasan', 'sdm-satker-1', 'sdm-ue1', 'biro-sdm'].includes(role);
 
   const getCurrentStep = () => {
     switch (role) {
       case 'pegawai': return 1;
       case 'atasan': return 2;
-      case 'sdm-satker': return 3;
+      case 'sdm-satker-1': return 3;
       case 'sdm-ue1': return 4;
       case 'biro-sdm': return 5;
       default: return 1;
@@ -73,12 +73,12 @@ function MPPForm({ pegawai, role, onClose, onSubmit, isArchived = false }: MPPFo
   const getInitialReviews = (): ReviewNode[] => {
     const baseReviews: ReviewNode[] = [
       { role: 'atasan', label: 'Atasan Langsung', status: 'pending', name: '-', icon: User },
-      { role: 'sdm-satker', label: 'SDM Satker', status: 'pending', name: '-', icon: Building2 },
+      { role: 'sdm-satker-1', label: 'SDM Satker', status: 'pending', name: '-', icon: Building2 },
       { role: 'sdm-ue1', label: 'SDM UE1', status: 'pending', name: '-', icon: Building2 },
       { role: 'biro-sdm', label: 'Biro SDM', status: 'pending', name: '-', icon: ShieldCheck },
     ];
 
-    if (role === 'sdm-satker') {
+    if (role === 'sdm-satker-1') {
       baseReviews[0] = { ...baseReviews[0], status: 'approved', name: 'Dra. Sari Hastuti, M.Si', tanggal: '05 Apr 2024', catatan: 'Disetujui. Pegawai memenuhi syarat MPP.' };
     } else if (role === 'sdm-ue1') {
       baseReviews[0] = { ...baseReviews[0], status: 'approved', name: 'Dra. Sari Hastuti, M.Si', tanggal: '05 Apr 2024', catatan: 'Disetujui. Pegawai memenuhi syarat MPP.' };

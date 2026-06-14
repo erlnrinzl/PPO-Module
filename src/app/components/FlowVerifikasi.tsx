@@ -699,7 +699,7 @@ export function FlowVerifikasi({ role }: FlowVerifikasiProps) {
   const [showBatchKirimUlang, setShowBatchKirimUlang] = useState(false);
   const [activeVerdiItem, setActiveVerdiItem] = useState<{ nd: NotaDinas; employee: PertekItem } | null>(null);
 
-  const canAccess = role === 'sdm-satker' || role === 'sdm-ue1' || role === 'biro-sdm';
+  const canAccess = role === 'sdm-satker-1' || role === 'sdm-ue1' || role === 'biro-sdm';
 
   const ndAktif = NOTA_DINAS_LIST.filter(nd => nd.status !== 'Selesai' && nd.status !== 'Verifikasi Ditolak');
   const ndVerdiDitolak = NOTA_DINAS_LIST.filter(nd => nd.status === 'Verifikasi Ditolak');

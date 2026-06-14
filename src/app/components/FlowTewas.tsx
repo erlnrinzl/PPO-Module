@@ -62,12 +62,12 @@ function TewasForm({ pegawai, role, onClose, isArchived = false }: TewasFormProp
     saksi2: isArchived ? 'Budi Santoso (Sopir kendaraan dinas)' : '',
     jenisKematian: 'kecelakaan_dinas',
   });
-  const canEdit = !isArchived && (role === 'sdm-satker' || role === 'sdm-ue1');
+  const canEdit = !isArchived && (role === 'sdm-satker-1' || role === 'sdm-ue1');
   const canVerify = !isArchived && role === 'biro-sdm';
 
   // Tentukan current step berdasarkan role
   const getCurrentStep = () => {
-    if (role === 'sdm-satker' || role === 'sdm-ue1') return 2; // Isi Form Verval PNS Tewas
+    if (role === 'sdm-satker-1' || role === 'sdm-ue1') return 2; // Isi Form Verval PNS Tewas
     if (role === 'biro-sdm') return 5; // Verifikasi & Kirim SIASN
     return 1; // Default
   };
@@ -547,7 +547,7 @@ export function FlowTewas({ role }: FlowTewasProps) {
   const [showTambahKasus, setShowTambahKasus] = useState(false);
   const [kasusData, setKasusData] = useState(DATA);
 
-  const isSdmSatker = role === 'sdm-satker';
+  const isSdmSatker = role === 'sdm-satker-1';
 
   const handleTambahKasus = (entry: Pegawai) => {
     setKasusData(prev => [entry, ...prev]);

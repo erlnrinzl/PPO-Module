@@ -46,13 +46,13 @@ function HilangForm({ pegawai, role, onClose, isArchived = false }: HilangFormPr
     nomorLaporan: isArchived ? 'LP/234/II/2023/Polresta Bogor' : 'LP/456/IV/2024/Polresta Bogor',
   });
   const [status, setStatus] = useState<'hilang' | 'ditemukan'>(isArchived ? 'ditemukan' : 'hilang');
-  const canEdit = !isArchived && (role === 'sdm-satker' || role === 'sdm-ue1');
+  const canEdit = !isArchived && (role === 'sdm-satker-1' || role === 'sdm-ue1');
   const canVerify = !isArchived && role === 'biro-sdm';
 
   const hariHilang = 70;
 
   const getCurrentStep = () => {
-    if (role === 'sdm-satker' || role === 'sdm-ue1') return 2;
+    if (role === 'sdm-satker-1' || role === 'sdm-ue1') return 2;
     if (role === 'biro-sdm') return 4;
     return 1;
   };
@@ -575,7 +575,7 @@ export function FlowHilang({ role }: FlowHilangProps) {
   const [showTambahKasus, setShowTambahKasus] = useState(false);
   const [kasusData, setKasusData] = useState(DATA);
 
-  const isSdmSatker = role === 'sdm-satker';
+  const isSdmSatker = role === 'sdm-satker-1';
 
   const handleTambahKasus = (entry: Pegawai) => {
     setKasusData(prev => [entry, ...prev]);

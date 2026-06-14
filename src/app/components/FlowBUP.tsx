@@ -224,12 +224,12 @@ function CaseDetail({ pegawai, role, onClose, isArchived = false, statusDokumen 
   const [confirmed, setConfirmed] = useState(false);
   const [berkasExpanded, setBerkasExpanded] = useState(false);
   const [manualUploads, setManualUploads] = useState<Set<string>>(new Set());
-  const canEdit = !isArchived && (role === 'sdm-satker' || role === 'sdm-ue1');
+  const canEdit = !isArchived && (role === 'sdm-satker-1' || role === 'sdm-ue1');
   const canVerify = !isArchived && role === 'biro-sdm';
   const currentStep = role === 'biro-sdm' ? 4 : 2;
 
   const isSubmitted = berkasStatus != null && berkasStatus !== 'Draft' && berkasStatus !== 'Dokumen Lengkap';
-  const canUpload = role === 'sdm-satker' && !isArchived && !isSubmitted;
+  const canUpload = role === 'sdm-satker-1' && !isArchived && !isSubmitted;
 
   const berkasItems   = getBerkasReqForJenis(pegawai.jenisKasus);
   const kemenkeuItems = berkasItems.filter(b => b.source === 'satu-kemenkeu');
@@ -1212,7 +1212,7 @@ export function FlowBUP({ role }: { role: Role }) {
   const [berkasStatusFilter, setBerkasStatusFilter] = useState('');
   const [berkasTanggalFilter, setBerkasTanggalFilter] = useState('');
 
-  const isSdmSatker = role === 'sdm-satker';
+  const isSdmSatker = role === 'sdm-satker-1';
 
   // Early return AFTER all hooks
   if (role === 'sdm-ue1') {

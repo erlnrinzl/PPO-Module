@@ -132,7 +132,7 @@ interface ApprovalNode {
 
 const DEFAULT_APPROVALS: ApprovalNode[] = [
   { role: 'atasan', label: 'Atasan Langsung', status: 'approved', name: 'Dr. Surya Pratama', tanggal: '20 Mei 2024', catatan: 'Disetujui. Pegawai telah menyampaikan alasan yang dapat dipahami.', icon: User },
-  { role: 'sdm-satker', label: 'SDM Satker', status: 'approved', name: 'Ratna Dewi', tanggal: '22 Mei 2024', catatan: 'Berkas lengkap, tidak ada kendala administrasi.', icon: Building2 },
+  { role: 'sdm-satker-1', label: 'SDM Satker', status: 'approved', name: 'Ratna Dewi', tanggal: '22 Mei 2024', catatan: 'Berkas lengkap, tidak ada kendala administrasi.', icon: Building2 },
   { role: 'sdm-ue1', label: 'SDM UE1', status: 'pending', name: '-', icon: Building2 },
   { role: 'biro-sdm', label: 'Biro SDM', status: 'pending', name: '-', icon: ShieldCheck },
 ];
@@ -141,7 +141,7 @@ const DEFAULT_APPROVALS: ApprovalNode[] = [
 // SDM Satker belum mereview (masih menunggu karena atasan baru sedang mereview)
 const ATASAN_APPROVALS: ApprovalNode[] = [
   { role: 'atasan', label: 'Atasan Langsung', status: 'pending', name: '-', icon: User },
-  { role: 'sdm-satker', label: 'SDM Satker', status: 'pending', name: '-', icon: Building2 },
+  { role: 'sdm-satker-1', label: 'SDM Satker', status: 'pending', name: '-', icon: Building2 },
   { role: 'sdm-ue1', label: 'SDM UE1', status: 'pending', name: '-', icon: Building2 },
   { role: 'biro-sdm', label: 'Biro SDM', status: 'pending', name: '-', icon: ShieldCheck },
 ];
@@ -165,7 +165,7 @@ function PGDForm({ pegawai, role, onClose, onSubmit, isArchived = false }: PGDFo
 
   const isPegawai = !isArchived && role === 'pegawai';
   const isAtasan = !isArchived && role === 'atasan';
-  const isSdmSatker = !isArchived && role === 'sdm-satker';
+  const isSdmSatker = !isArchived && role === 'sdm-satker-1';
   const isSdmUe1 = !isArchived && role === 'sdm-ue1';
   const isBiroSdm = !isArchived && role === 'biro-sdm';
 
@@ -174,7 +174,7 @@ function PGDForm({ pegawai, role, onClose, onSubmit, isArchived = false }: PGDFo
     switch (role) {
       case 'pegawai': return 1;
       case 'atasan': return 2;
-      case 'sdm-satker': return 3;
+      case 'sdm-satker-1': return 3;
       case 'sdm-ue1': return 4;
       case 'biro-sdm': return 5;
       default: return 1;
@@ -185,13 +185,13 @@ function PGDForm({ pegawai, role, onClose, onSubmit, isArchived = false }: PGDFo
   const getInitialApprovals = (): ApprovalNode[] => {
     const baseApprovals: ApprovalNode[] = [
       { role: 'atasan', label: 'Atasan Langsung', status: 'pending', name: '-', icon: User },
-      { role: 'sdm-satker', label: 'SDM Satker', status: 'pending', name: '-', icon: Building2 },
+      { role: 'sdm-satker-1', label: 'SDM Satker', status: 'pending', name: '-', icon: Building2 },
       { role: 'sdm-ue1', label: 'SDM UE1', status: 'pending', name: '-', icon: Building2 },
       { role: 'biro-sdm', label: 'Biro SDM', status: 'pending', name: '-', icon: ShieldCheck },
     ];
 
     // Set status approved untuk role-role sebelumnya
-    if (role === 'sdm-satker') {
+    if (role === 'sdm-satker-1') {
       baseApprovals[0] = { ...baseApprovals[0], status: 'approved', name: 'Dr. Surya Pratama', tanggal: '20 Mei 2024', catatan: 'Disetujui. Pegawai telah menyampaikan alasan yang dapat dipahami.' };
     } else if (role === 'sdm-ue1') {
       baseApprovals[0] = { ...baseApprovals[0], status: 'approved', name: 'Dr. Surya Pratama', tanggal: '20 Mei 2024', catatan: 'Disetujui. Pegawai telah menyampaikan alasan yang dapat dipahami.' };
@@ -1141,7 +1141,7 @@ export function FlowPengunduranDiri({ role }: FlowPGDProps) {
   }
 
   // SDM Satker special views (review tabs, schedule, input)
-  if (role === 'sdm-satker' && selected && sdmSatkerView === 'review') {
+  if (role === 'sdm-satker-1' && selected && sdmSatkerView === 'review') {
     const resetAndBack = () => {
       setSdmSatkerWizardStep(1);
       setSdmSatkerVerifikasiDecision('pending');
@@ -1639,7 +1639,7 @@ export function FlowPengunduranDiri({ role }: FlowPGDProps) {
     );
   }
 
-  if (role === 'sdm-satker' && selected && sdmSatkerView === 'schedule-exit') {
+  if (role === 'sdm-satker-1' && selected && sdmSatkerView === 'schedule-exit') {
     return (
       <div className="p-6 space-y-5">
         <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4 flex gap-3">
@@ -1745,7 +1745,7 @@ export function FlowPengunduranDiri({ role }: FlowPGDProps) {
     );
   }
 
-  if (role === 'sdm-satker' && selected && sdmSatkerView === 'input-exit') {
+  if (role === 'sdm-satker-1' && selected && sdmSatkerView === 'input-exit') {
     return (
       <div className="p-6 space-y-5">
         <div className="bg-green-50 border border-green-200 rounded-2xl p-4 flex gap-3">
@@ -2951,7 +2951,7 @@ KEPALA BIRO SUMBER DAYA MANUSIA,
 
     const approvals: ApprovalNode[] = [
       { role: 'atasan', label: 'Atasan Langsung', status: 'approved', name: 'Dr. Surya Pratama', tanggal: '20 Mei 2024', catatan: 'Disetujui. Pegawai telah menyampaikan alasan yang dapat dipahami.', icon: User },
-      { role: 'sdm-satker', label: 'SDM Satker', status: 'approved', name: 'Ratna Dewi', tanggal: '22 Mei 2024', catatan: 'Berkas lengkap, tidak ada kendala administrasi.', icon: Building2 },
+      { role: 'sdm-satker-1', label: 'SDM Satker', status: 'approved', name: 'Ratna Dewi', tanggal: '22 Mei 2024', catatan: 'Berkas lengkap, tidak ada kendala administrasi.', icon: Building2 },
       { role: 'sdm-ue1', label: 'SDM UE1', status: 'approved', name: 'Ahmad Hidayat', tanggal: '24 Mei 2024', catatan: 'Telah diverifikasi dan direkomendasikan.', icon: Building2 },
       { role: 'biro-sdm', label: 'Biro SDM', status: 'pending', name: '-', icon: ShieldCheck },
     ];
@@ -4028,11 +4028,11 @@ KEPALA BIRO SUMBER DAYA MANUSIA,
                     return (
                       <tr
                         key={p.id}
-                        className={`hover:bg-purple-50/30 transition-colors ${role !== 'sdm-satker' || mainTab === 'arsip' ? 'cursor-pointer' : ''}`}
+                        className={`hover:bg-purple-50/30 transition-colors ${role !== 'sdm-satker-1' || mainTab === 'arsip' ? 'cursor-pointer' : ''}`}
                         onClick={() => {
-                          if (role !== 'sdm-satker' || mainTab === 'arsip') {
+                          if (role !== 'sdm-satker-1' || mainTab === 'arsip') {
                             setSelected(p);
-                            if (role !== 'sdm-satker' && mainTab === 'aktif') setShowReviewPage(true);
+                            if (role !== 'sdm-satker-1' && mainTab === 'aktif') setShowReviewPage(true);
                           }
                         }}
                       >
@@ -4069,7 +4069,7 @@ KEPALA BIRO SUMBER DAYA MANUSIA,
                           </div>
                         </td>
                         <td className="px-4 py-3">
-                          {role === 'sdm-satker' && mainTab === 'aktif' ? (
+                          {role === 'sdm-satker-1' && mainTab === 'aktif' ? (
                             <div className="flex items-center gap-2">
                               <button
                                 onClick={e => { e.stopPropagation(); setSelected(p); setSdmSatkerView('review'); }}
@@ -4120,7 +4120,7 @@ KEPALA BIRO SUMBER DAYA MANUSIA,
         )}
       </div>
 
-      {selected && role !== 'sdm-satker' && mainTab === 'arsip' && <PGDForm pegawai={selected} role={role} onClose={() => setSelected(null)} isArchived={true} />}
+      {selected && role !== 'sdm-satker-1' && mainTab === 'arsip' && <PGDForm pegawai={selected} role={role} onClose={() => setSelected(null)} isArchived={true} />}
     </div>
   );
 }

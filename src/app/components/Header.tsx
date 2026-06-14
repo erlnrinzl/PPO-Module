@@ -17,31 +17,31 @@ const ALL_NOTIFS: Notification[] = [
     id: '1', title: 'Mendesak: BUP < 1 Bulan',
     body: 'Gunawan Wibowo (NIP: 197207151995031003) akan mencapai BUP dalam 28 hari.',
     time: '5 menit lalu', unread: true, type: 'error',
-    roles: ['sdm-satker', 'sdm-ue1', 'biro-sdm'],
+    roles: ['sdm-satker-1', 'sdm-ue1', 'biro-sdm'],
   },
   {
     id: '2', title: 'Berkas Belum Lengkap',
     body: 'Pemberhentian atas nama Ahmad Subarjo memerlukan clearance BMN.',
     time: '1 jam lalu', unread: true, type: 'warning',
-    roles: ['sdm-satker', 'sdm-ue1', 'biro-sdm'],
+    roles: ['sdm-satker-1', 'sdm-ue1', 'biro-sdm'],
   },
   {
     id: '3', title: 'Permohonan MPP Baru',
     body: 'Indah Pertiwi mengajukan MPP mulai 01 Februari 2025.',
     time: '3 jam lalu', unread: true, type: 'info',
-    roles: ['atasan', 'sdm-satker', 'sdm-ue1', 'biro-sdm'],
+    roles: ['atasan', 'sdm-satker-1', 'sdm-ue1', 'biro-sdm'],
   },
   {
     id: '4', title: 'SK Pemberhentian Terbit',
     body: 'SK Pemberhentian Sri Rahayu telah diterbitkan dan siap diunduh.',
     time: 'Kemarin', unread: false, type: 'success',
-    roles: ['sdm-satker', 'sdm-ue1', 'biro-sdm'],
+    roles: ['sdm-satker-1', 'sdm-ue1', 'biro-sdm'],
   },
   {
     id: '5', title: 'Usulan Pengunduran Diri',
     body: 'Hendra Kusuma mengajukan pengunduran diri. Menunggu review Anda.',
     time: 'Kemarin', unread: false, type: 'info',
-    roles: ['atasan', 'sdm-satker', 'sdm-ue1', 'biro-sdm'],
+    roles: ['atasan', 'sdm-satker-1', 'sdm-ue1', 'biro-sdm'],
   },
   {
     id: '6', title: 'Status Pengajuan MPP Anda',
@@ -75,7 +75,7 @@ const NOTIF_DOT_COLORS: Record<Notification['type'], string> = {
 const ROLE_USER_PROFILES: Record<Role, { name: string; nip: string; initials: string }> = {
   'pegawai':    { name: 'Indah Pertiwi',      nip: 'NIP: 197809152005012002', initials: 'IP' },
   'atasan':     { name: 'Dr. Bambang Susilo',  nip: 'NIP: 196504201990031001', initials: 'BS' },
-  'sdm-satker': { name: 'Reni Agustina',       nip: 'NIP: 198206102006042003', initials: 'RA' },
+  'sdm-satker-1': { name: 'Reni Agustina',       nip: 'NIP: 198206102006042003', initials: 'RA' },
   'sdm-ue1':    { name: 'Hadi Purnomo',        nip: 'NIP: 197112251997031004', initials: 'HP' },
   'biro-sdm':   { name: 'Dra. Sri Wahyuni',    nip: 'NIP: 196808131993032001', initials: 'SW' },
 };
@@ -87,7 +87,7 @@ interface HeaderProps {
   onNavigate: (v: View) => void;
 }
 
-const roles: Role[] = ['pegawai', 'atasan', 'sdm-satker', 'sdm-ue1', 'biro-sdm'];
+const roles: Role[] = ['pegawai', 'atasan', 'sdm-satker-1', 'sdm-ue1', 'biro-sdm'];
 
 export function Header({ currentRole, onRoleChange, currentView }: HeaderProps) {
   const [showNotif, setShowNotif] = useState(false);
