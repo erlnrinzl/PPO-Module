@@ -1,29 +1,38 @@
-import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation, useNavigate } from 'react-router';
-import { Header } from '../components/Header';
-import { Sidebar } from '../components/Sidebar';
-import { FlowBUP } from '../components/FlowBUP';
-import { FlowHilang } from '../components/FlowHilang';
-import { FlowMPP } from '../components/FlowMPP';
-import { FlowPengunduranDiri } from '../components/FlowPengunduranDiri';
-import { FlowTewas } from '../components/FlowTewas';
-import { FlowVerifikasi } from '../components/FlowVerifikasi';
-import { MonitoringPage } from '../pages/monitoring/MonitoringPage';
-import { RoleStoreProvider, useRoleStore } from '../store/role.store';
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router";
+import { Header } from "../components/Header";
+import { Sidebar } from "../components/layout/Sidebar";
+import { FlowBUP } from "../components/FlowBUP";
+import { FlowHilang } from "../components/FlowHilang";
+import { FlowMPP } from "../components/FlowMPP";
+import { FlowPengunduranDiri } from "../components/FlowPengunduranDiri";
+import { FlowTewas } from "../components/FlowTewas";
+import { FlowVerifikasi } from "../components/FlowVerifikasi";
+import { MonitoringPage } from "../pages/monitoring/MonitoringPage";
+import { RoleStoreProvider, useRoleStore } from "../store/role.store";
 import {
   getDefaultView,
   getPathForView,
   getViewFromPath,
   type Role,
   type View,
-} from './routeConfig';
-import { ProtectedRoute } from './ProtectedRoute';
-import { RoleBasedRoute } from './RoleBasedRoute';
+} from "./routeConfig";
+import { ProtectedRoute } from "./ProtectedRoute";
+import { RoleBasedRoute } from "./RoleBasedRoute";
 
 function AppShell() {
   const location = useLocation();
   const navigate = useNavigate();
   const { currentRole, setCurrentRole } = useRoleStore();
-  const currentView = getViewFromPath(location.pathname) ?? getDefaultView(currentRole);
+  const currentView =
+    getViewFromPath(location.pathname) ?? getDefaultView(currentRole);
 
   const handleNavigate = (view: View) => {
     navigate(getPathForView(view));
@@ -31,7 +40,8 @@ function AppShell() {
 
   const handleRoleChange = (newRole: Role) => {
     setCurrentRole(newRole);
-    const fallbackView = getDefaultView(newRole) === currentView ? null : getDefaultView(newRole);
+    const fallbackView =
+      getDefaultView(newRole) === currentView ? null : getDefaultView(newRole);
 
     if (fallbackView) {
       navigate(getPathForView(fallbackView), { replace: true });
@@ -40,7 +50,11 @@ function AppShell() {
 
   return (
     <div className="flex h-screen overflow-hidden bg-[#EEF2F7]">
-      <Sidebar currentView={currentView} onNavigate={handleNavigate} currentRole={currentRole} />
+      <Sidebar
+        currentView={currentView}
+        onNavigate={handleNavigate}
+        currentRole={currentRole}
+      />
       <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
         <Header
           currentRole={currentRole}
@@ -61,7 +75,10 @@ function MonitoringRoute({ role }: { role: Role }) {
 
   return (
     <RoleBasedRoute role={role} view="monitoring">
-      <MonitoringPage role={role} onNavigate={(view) => navigate(getPathForView(view))} />
+      <MonitoringPage
+        role={role}
+        onNavigate={(view) => navigate(getPathForView(view))}
+      />
     </RoleBasedRoute>
   );
 }
@@ -125,7 +142,10 @@ export function AppRouter() {
               <Route path="monitoring" element={<MonitoringRouteWrapper />} />
               <Route path="bup" element={<BupRouteWrapper />} />
               <Route path="tewas" element={<TewasRouteWrapper />} />
-              <Route path="pengunduran-diri" element={<PengunduranDiriRouteWrapper />} />
+              <Route
+                path="pengunduran-diri"
+                element={<PengunduranDiriRouteWrapper />}
+              />
               <Route path="hilang" element={<HilangRouteWrapper />} />
               <Route path="verifikasi" element={<VerifikasiRouteWrapper />} />
               <Route path="mpp" element={<MppRouteWrapper />} />
